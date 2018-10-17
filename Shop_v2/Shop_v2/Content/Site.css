@@ -1,0 +1,178 @@
+﻿
+body {
+    font-family: 'Comfortaa', cursive;
+    /*font-family: 'Lobster', regular;*/
+}
+
+#headListProd {
+    padding-left: 2%;
+}
+/* Карточки с товарами */
+.products {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    padding: 2%;
+    flex-grow: 1;
+    flex-basis: 10%;
+    display: flex; /* so child elements can use flexbox stuff too! */
+}
+
+.product-card {
+    flex: 1 22%;
+    /*background-color: azure;*/
+}
+
+.product-image img {
+    max-width: 100%;
+}
+
+.product-info {
+    margin-top: auto;
+}
+
+#prodName {
+    font-size: 18pt;
+}
+
+#prodName a:before{
+    color: black;
+}
+
+@media (max-width: 920px) {
+
+    .product-card {
+        flex: 1 21%;
+    }
+}
+
+/* Select the first two */
+
+/*.products .product-card:first-child,
+.products .product-card:nth-child(2) {
+    flex: 2 46%;
+}*/
+
+@media (max-width: 600px) {
+    .product-card {
+        flex: 1 46%;
+    }
+}
+
+/*-----------*/
+/* меню */
+#menu, #menu li {
+    margin: 0;
+    padding: 0;
+}
+
+#menu {
+    text-align: center; /* пункты и текст горизонтально по центру */
+    /*background: #03658e;*/
+}
+
+    #menu li {
+        display: inline-block;
+        text-align: center;
+        font-size: 9pt;
+    }
+
+    #menu a {
+        display: block;
+        padding: 5px 15px;
+        color: #808080;
+        font-size: 150%;
+        text-decoration: none;
+    }
+
+        #menu a:hover {
+            /*background: #8AB8CC;*/
+            color: black;
+        }
+
+
+/* category*/
+
+
+#category, #category li {
+    margin: 0;
+    padding: 0;
+}
+
+#category {
+    text-align: center; /* пункты и текст горизонтально по центру */
+    /*background: #03658e;*/
+}
+
+    #category li {
+        display: inline-block;
+        text-align: center;
+        font-size: 9pt;
+    }
+
+    #category a {
+        display: block;
+        padding: 5px 15px;
+        color: #808080;
+        font-size: 150%;
+        text-decoration: none;
+    }
+
+        #category a:hover {
+            /*background: #8AB8CC;*/
+            color: black;
+        }
+
+
+/*page about*/
+#aboutImg_l, #aboutImg_r {
+    width: 250px;
+    height: 250px;
+}
+
+
+#aboutImg_l {
+    float: left;
+    margin: 0, 7px;
+}
+
+#aboutImg_r {
+    float: right;
+    margin: 7px, 0;
+}
+
+
+/* registration */
+.myTextbox {
+    
+}
+
+#myTextbox2 {
+    /*padding-bottom: 100px;*/
+}
+.plus-btn img {
+    margin-top: 2px;
+
+}
+#row-price{
+    margin-left:10px;
+}
+
+
+#requiredInfo{
+    color:red;
+}
+
+ 
+#userList {
+    list-style-type: decimal;
+}
+
+ 

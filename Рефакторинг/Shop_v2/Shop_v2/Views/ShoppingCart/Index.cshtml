@@ -1,0 +1,128 @@
+﻿@model Shop_v2.Models.ShoppingCartModel
+
+@{
+    ViewBag.Title = "Корзина";
+}
+
+<script src="/Scripts/jquery-1.4.4.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        // Document.ready -> link up remove event handler
+        $(".RemoveLink").click(function () {
+            // Get the id from the link
+            var recordToDelete = $(this).attr("data-id");
+
+            if (recordToDelete != '') {
+
+                // Perform the ajax post
+                $.post("/ShoppingCart/RemoveFromCart", { "id": recordToDelete },
+                    function (data) {
+                        // Successful requests get here
+                        // Update the page elements
+                        if (data.ItemCount == 0) {
+                            $('#row-' + data.DeleteId).fadeOut('slow');
+                        } else {
+                            $('#item-count-' + data.DeleteId).text(data.ItemCount);
+                        }
+
+                        $('#cart-total').text(data.CartTotal);
+                        $('#update-message').text(data.Message);
+                        $('#cart-status').text('Cart (' + data.CartCount + ')');
+                    });
+            }
+        });
+    });
+
+    function handleUpdate() {
+        // Load and deserialize the returned JSON data
+        var json = context.get_data();
+        var data = Sys.Serialization.JavaScriptSerializer.deserialize(json);
+
+        // Update the page elements
+        if (data.ItemCount == 0) {
+            $('#row-' + data.DeleteId).fadeOut('slow');
+        } else {
+            $('#item-count-' + data.DeleteId).text(data.ItemCount);
+        }
+
+        $('#cart-total').text(data.CartTotal);
+        $('#update-message').text(data.Message);
+        $('#cart-status').text('Cart (' + data.CartCount + ')');
+    }
+</script>
+
+<h3>Ваши покупки:</h3>
+<div id="update-message">
+</div>
+<table border="1" style="min-width:800px">
+    <tr>
+        <th colspan="2" style="text-align:center;">
+            Товар
+        </th>
+        <th style="text-align:center">
+            Цена за шт
+        </th>
+        <th style="text-align:center" colspan="3">
+            Количество
+        </th>
+    </tr>
+    @foreach (var item in Model.CartItems)
+    {
+        <tr id="row-@item.RecordId">
+
+            <td>
+                <img src="@Url.Content(item.Product.ImagePath)" width="100" height="100" multiple />
+            </td>
+            <td>
+                @Html.ActionLink(item.Product.Name, "Details", "Home", new { id = item.ProductId }, null)
+            </td>
+            <td style="width: 100px; text-align:center;">
+                @item.Product.Price
+            </td>
+
+            <td>
+                <a href="#" class="RemoveLink" data-id="@item.RecordId">
+                    <img src="~/Content/ImgForSity/minus.svg" width="15" height="15" />
+                </a>
+                @*<a href="@Url.Action("RemoveFromCart", "ShoppingCart", new { id = item.ProductId }, null)">
+                        <img src="~/Content/ImgForSity/minus.svg" width="15" height="15" />
+                    </a>*@
+            </td>
+
+            <td id="item-count-@item.RecordId" style="width: 100px; text-align:center;">
+                @item.Count
+            </td>
+
+            <td>
+                <a href="@Url.Action("AddToCart", "ShoppingCart", new { id = item.ProductId }, null)">
+                    <img src="~/Content/ImgForSity/plus.svg" width="15" height="15" />
+                </a>
+
+            </td>
+        </tr>
+
+    }
+</table>
+
+<hr />
+
+<div>
+    <h4 id="cart-total" >Общая стоимость: @Model.CartTotal </h4>
+</div>
+ 
+<p>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+    {
+        <input type="submit" value="Продолжить покупки" />
+    }
+</p>
+
+<p> 
+    <button>
+        @Html.ActionLink("Оформить заказ", "Checkout", "ShoppingCart", new { id = Model.Id })
+    </button>
+</p>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

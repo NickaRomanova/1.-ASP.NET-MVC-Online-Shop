@@ -1,0 +1,104 @@
+﻿@model Shop_v2.Models.User
+
+@{
+    ViewBag.Title = "Профиль";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center;">
+    Мой аккаунт
+</h2>
+
+<h3 style="text-align:center;">
+    @(Request.IsAuthenticated ? HttpContext.Current.User.Identity.Name : "Guest")
+</h3>
+
+<h3>Контактная информация</h3>
+<hr />
+
+<p>
+    <b>
+        @Html.LabelFor(m => m.UserName)
+    </b>
+    <br />
+    @Html.DisplayFor(m => m.UserName)
+</p>
+
+<p>
+    <b>
+        @Html.LabelFor(m => m.FirstName)
+    </b>
+    <br />
+    @Html.DisplayFor(m => m.FirstName)
+</p>
+
+<p>
+    <b>
+        @Html.LabelFor(m => m.LastName)
+    </b>
+    <br />
+    @Html.DisplayFor(m => m.LastName)
+</p>
+
+<p>
+    <b>
+        @Html.LabelFor(m => m.PhoneNumber)
+    </b>
+    <br />
+    @Html.DisplayFor(m => m.PhoneNumber)
+</p>
+
+<p>
+    <b>
+        @Html.LabelFor(m => m.Email)
+    </b>
+    <br />
+    @Html.DisplayFor(m => m.Email)
+</p>
+
+
+<h3>Адрес</h3>
+<hr />
+
+<p>
+    <b>
+        @Html.LabelFor(m => m.City)
+    </b>
+    <br />
+    @Html.DisplayFor(m => m.City)
+</p>
+
+<p>
+    <b>
+        @Html.LabelFor(m => m.Street)
+    </b>
+    <br />
+    @Html.DisplayFor(m => m.Street)
+</p>
+
+<p>
+    <b>
+        @Html.LabelFor(m => m.House)
+    </b>
+    <br />
+    @Html.DisplayFor(m => m.House)
+</p>
+
+<p>
+    <b>
+        @Html.LabelFor(m => m.Housing)
+    </b>
+    <br />
+    @Html.DisplayFor(m => m.Housing)
+    <br />
+
+</p>
+
+<p>
+    <b>
+        @Html.LabelFor(m => m.Flat)
+    </b>
+    <br />
+    @Html.DisplayFor(m => m.Flat)
+    <br />
+</p> 

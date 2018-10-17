@@ -1,0 +1,90 @@
+﻿@model Shop_v2.Models.User
+
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Оформление заказа</h2>
+
+<h3>Контактная информация</h3>
+<hr />
+
+<p>
+    <b>
+        @Html.LabelFor(m => m.FirstName)
+    </b>
+    <br />
+    <input v-model="message" placeholder=@Html.DisplayFor(m => m.FirstName)>
+</p>
+
+<p>
+    <b>
+        @Html.LabelFor(m => m.LastName)
+    </b>
+    <br />
+    <input v-model="message" placeholder=@Html.DisplayFor(m => m.LastName)>
+</p>
+
+<p>
+    <b>
+        @Html.LabelFor(m => m.PhoneNumber)
+    </b>
+    <br />
+    <input v-model="message" placeholder=@Html.DisplayFor(m => m.PhoneNumber)>
+</p>
+
+<p>
+    <b>
+        @Html.LabelFor(m => m.Email)
+    </b>
+    <br />
+    <input v-model="message" placeholder=@Html.DisplayFor(m => m.Email)>
+</p>
+
+<h3> Адрес</h3>
+<hr />
+<p>
+    <b>
+        @Html.LabelFor(m => m.City)
+    </b>
+    <br />
+    <input v-model="message" placeholder=@Html.DisplayFor(m => m.City)>
+</p>
+
+<p>
+    <b>
+        @Html.LabelFor(m => m.Street)
+    </b>
+    <br />
+    <input v-model="message" placeholder=@Html.DisplayFor(m => m.Street)>
+</p>
+
+<p>
+    <b>
+        @Html.LabelFor(m => m.House)
+    </b>
+    <br />
+    <input v-model="message" placeholder=@Html.DisplayFor(m => m.House)>
+</p>
+
+<p>
+    <b>
+        @Html.LabelFor(m => m.Housing)
+    </b>
+    <br />
+    <input v-model="message" placeholder=@Html.DisplayFor(m => m.Housing)>
+</p>
+
+<p>
+    <b>
+        @Html.LabelFor(m => m.Flat)
+    </b>
+    <br />
+    <input v-model="message" placeholder=@Html.DisplayFor(m => m.Flat)>
+</p>
+
+@using (Html.BeginForm("ConfirmOrder", "ShoppingCart", FormMethod.Get))
+{
+    <input type="submit" value="Подтвердить" />
+}

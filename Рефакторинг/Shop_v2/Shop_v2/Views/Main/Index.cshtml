@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Главная";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*@Html.Partial("SearchForm")
+
+<h1>Главная </h1>*@
+<div id="headListProd">
+    <h1> Новинки этой недели!</h1>
+
+    @*<em>Последние 5 товаров</em>*@
+
+    <p> <em> Наш магазин постоянно получает новые товары. Следите за обновлениями на сайте.</em> </p>
+    </div>
+    <p>
+        @Html.Partial("LastProducts")
+    </p>
+
+

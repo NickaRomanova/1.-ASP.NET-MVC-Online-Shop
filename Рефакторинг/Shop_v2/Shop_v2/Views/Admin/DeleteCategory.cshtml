@@ -1,0 +1,41 @@
+﻿
+@model  Shop_v2.Models.Category
+
+@{
+    ViewBag.Title = "Удалить категорию";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<fieldset>
+    <legend>Категория</legend>
+
+    <h1>Удаление категории</h1>
+
+
+    <h2> Вы уверены в удаление: @Model.CategoryName </h2>
+
+    @Html.HiddenFor(m => m.Id)
+    <p>
+        <b> 
+        @*@Html.LabelFor(m => m.CategoryName)*@
+            Название категории
+        </b>
+        <br />
+        @Html.DisplayFor(m => m.CategoryName)
+    </p>
+
+
+
+    <p>
+        @Html.ActionLink("Назад к настройкам категория", "AllCategory", "Admin")
+    </p>
+
+
+
+    @using (Html.BeginForm("DeleteCategory", "Admin", FormMethod.Post))
+    {
+        <input type="submit" value="Удалить"   />
+
+    }
+
+</fieldset>

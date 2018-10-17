@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Shop_v2.Models.Product>
+
+<div id="category">
+    <ol>
+
+        @foreach (var item in Model.Select(m => new { m.Category.CategoryName }).Distinct())
+        {
+            <li>
+                @Html.ActionLink(item.CategoryName, "SelectedCategory", new { category = item.CategoryName })
+            </li>
+        }
+
+        <li>
+            @Html.ActionLink("Все товары", "Index")
+        </li>
+    </ol>
+</div>

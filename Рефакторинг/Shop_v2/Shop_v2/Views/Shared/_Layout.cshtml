@@ -1,0 +1,95 @@
+﻿@*@model Shop_v2.Models.User*@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+    @Scripts.Render("~/scripts/jquery-1.10.2.js")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
+    @Scripts.Render("~/scripts/jquery-3.3.1.min.js")
+
+    <script src="@Url.Content("~/Scripts/jquery-1.4.4.min.js")"
+            type="text/javascript"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa|Lobster" rel="stylesheet">
+
+    <link href="~/Content/Site.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/ImgForSity/abc.png" />
+</head>
+<body>
+    <div class="container head-content">
+        <div id="menu">
+            <ul>
+                <li> <a href="@Url.Action("Index","Main")">Главная</a> </li>
+                <li> <a href="@Url.Action("Index","Home")">Каталог</a> </li>
+                <li> <a href="@Url.Action("Index","About")">О нас</a> </li>
+                <li> <a href="@Url.Action("Index","Contact")">Контакты</a> </li>
+                <li> <a href="@Url.Action("Index", "ShoppingCart")">Корзина</a></li>
+
+                <li>
+                    @{ 
+                        if (Request.IsAuthenticated)
+                        {
+                            @Html.ActionLink("Здравствуйте, " + (Request.IsAuthenticated ? HttpContext.Current.User.Identity.Name : "Guest").ToString(), "MyProfile", "MyAccount", new { name = HttpContext.Current.User.Identity.Name.ToString() }, null)
+                          }
+                        else
+                        {
+                            @Html.ActionLink("Регистрация", "Registration", "MyAccount")
+                        }
+                    }
+                </li>
+
+
+                <li>
+                    @{
+                        if (Request.IsAuthenticated)
+                        {
+                            using (Html.BeginForm("Logout", "MyAccount", FormMethod.Post, new { id = "logoutForm" }))
+                            {
+                                <br />
+                                <a href="javascript:document.getElementById('logoutForm').submit()"> Выход </a>
+                            }
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Вход", "Login", "MyAccount")
+                        }
+                    }
+                </li>
+
+
+
+            </ul>
+        </div>
+    </div>
+    <div class="container body-content">
+
+        @RenderBody()
+
+        @Scripts.Render("~/bundles/jqueryval") @*Подключение сценариев для валидации форм*@
+
+        <hr />
+        <footer>
+
+            <p><a href="@Url.Action("Index","Admin")">Администрирование сайта</a></p>
+            <p>&copy; @DateTime.Now.Year - Магазин детских товаров "Львенок"</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/scripts/jquery-1.10.2.js")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
+    @Scripts.Render("~/Scripts/jquery-1.8.0.min.js")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

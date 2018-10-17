@@ -1,0 +1,38 @@
+﻿@model Shop_v2.Models.Producer
+
+@{
+    ViewBag.Title = "Редактировать поставщика";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<fieldset>
+
+    <h1> Редактирование поставщика</h1>
+
+    <h4>@ViewBag.Message</h4>
+
+    @using (Html.BeginForm("EditProducer", "Admin", FormMethod.Post))
+    {
+
+        @Html.HiddenFor(m => m.Id)
+        <p>
+            @Html.LabelFor(m => m.Name)
+            <br />
+            @Html.EditorFor(m => m.Name)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.Description)
+            <br />
+            @Html.EditorFor(m => m.Description)
+        </p>
+
+
+        <p>
+            @Html.ActionLink("К списку производителей", "AllProducer", "Admin")
+        </p>
+
+        <p><input type="submit" value="Отправить" /></p>
+
+    }
+
+</fieldset>

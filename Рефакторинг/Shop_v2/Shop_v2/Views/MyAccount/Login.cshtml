@@ -1,0 +1,76 @@
+﻿@model Shop_v2.Models.Login
+
+@{
+    ViewBag.Title = "Вход";
+}
+
+<h2>Вход</h2>
+
+<h4>@ViewBag.Message</h4>
+
+@Html.AntiForgeryToken()
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <hr />
+
+    @Html.ValidationSummary(true)
+
+    <div>
+        @Html.LabelFor(model => model.UserName)
+        @Html.EditorFor(model => model.UserName)
+        @Html.ValidationMessageFor(model => model.UserName)
+
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.Password)
+        @Html.EditorFor(model => model.Password)
+        @Html.ValidationMessageFor(model => model.Password)
+
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.RememberMe)
+        @Html.EditorFor(model => model.RememberMe)
+        @Html.ValidationMessageFor(model => model.RememberMe)
+    </div>
+
+    <br />
+    <P>
+        @{
+            if (Request.IsAuthenticated)
+            {
+
+            <p>Настройку сайта может выполнять только администратор!</p>
+        }
+        else
+        {
+            @Html.ActionLink("Если у вас нет аккаунта - зарегистрируйтесь", "Registration", "MyAccount")
+        }
+        }
+        </P>
+        @*<div>
+                @Html.ActionLink("Если у вас нет аккаунта - зарегистрируйтесь", "Registration", "MyAccount")
+            </div>*@
+
+        <br />
+
+
+         
+
+        <div>
+                @Html.ActionLink("Забыли пароль?", "ForgotPassword", "MyAccount")
+            </div>
+
+
+        <div>
+            <input type="submit" value="Вход" />
+        </div>
+    }
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

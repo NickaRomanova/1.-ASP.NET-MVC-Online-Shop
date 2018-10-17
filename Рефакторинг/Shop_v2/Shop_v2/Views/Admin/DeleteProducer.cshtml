@@ -1,0 +1,35 @@
+﻿@model  Shop_v2.Models.Producer
+
+@{
+    ViewBag.Title = "Удалить поставщика";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<fieldset>
+    <h2> Вы уверены в удаление: @Model.Name </h2>
+
+    @Html.HiddenFor(m => m.Id)
+    <p>
+        @Html.LabelFor(m => m.Name)
+        <br />
+        @Html.DisplayFor(m => m.Name)
+    </p>
+
+    <p>
+        @Html.LabelFor(m => m.Description)
+        <br />
+        @Html.DisplayFor(m => m.Description)
+    </p>
+
+    <p>
+        @Html.ActionLink("Назад к списку производителей", "AllProducer", "Admin")
+    </p>
+
+
+
+    @using (Html.BeginForm("DeleteProducer", "Admin", FormMethod.Post))
+    {
+        <input type="submit" value="Удалить"   />
+
+    }
+</fieldset>

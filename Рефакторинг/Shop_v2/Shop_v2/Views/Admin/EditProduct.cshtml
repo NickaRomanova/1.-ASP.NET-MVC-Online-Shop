@@ -1,0 +1,74 @@
+﻿@model Shop_v2.Models.Product
+
+@{
+    ViewBag.Title = "Редактировать товар";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1> Редактирование товара @Model.Name </h1>
+
+@using (Html.BeginForm("EditProduct", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <fieldset>
+        <legend>Товар</legend>
+
+        @Html.HiddenFor(m => m.Id)
+        <p>
+            @Html.LabelFor(m => m.Name)
+            <br />
+            @Html.EditorFor(m => m.Name)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.CategoryId)
+            <br />
+            @Html.DropDownListFor(m => m.CategoryId, ViewBag.Categories as SelectList)
+
+        </p>
+        <p>
+            <b>
+                @Html.LabelFor(m => m.ImagePath)
+            </b>
+            <br />
+            <input type="file" name="ImageFile" required>
+        </p>
+
+        <br />
+        <p>
+            @Html.LabelFor(m => m.Characteristic)
+            <br />
+            @Html.EditorFor(m => m.Characteristic)
+
+        </p>
+        <p>
+            @Html.LabelFor(m => m.Description)
+            <br />
+            @Html.EditorFor(m => m.Description)
+
+        </p>
+        <p>
+            @Html.LabelFor(m => m.ProducerId)
+            <br />
+            @Html.DropDownListFor(m => m.ProducerId, ViewBag.Producers as SelectList)
+
+        </p>
+        <p>
+            @Html.LabelFor(m => m.Quantity)
+            <br />
+            @Html.EditorFor(m => m.Quantity)
+        </p>
+        <p>
+            @Html.LabelFor(m => m.Price)
+            <br />
+            @Html.EditorFor(m => m.Price)
+        </p>
+
+
+        <p>
+            @Html.ActionLink("К списку товаров", "Index", "Admin")
+        </p>
+
+        <p><input type="submit" value="Сохранить" /></p>
+
+
+    </fieldset>
+}

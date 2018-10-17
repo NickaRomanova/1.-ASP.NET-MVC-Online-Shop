@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Shop_v2.Models.Product>
+
+@{
+    ViewBag.Title = "Каталог";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+} 
+
+<div id="headListProd">
+    <h1>Каталог </h1>
+
+    @Html.Partial("SearchForm")
+
+    <div id="category">
+        <ol>
+
+            @foreach (var item in Model.Select(m => new { m.Category.CategoryName }).Distinct())
+            {
+                <li>
+                    @Html.ActionLink(item.CategoryName, "SelectedCategory", new { category = item.CategoryName })
+                </li>
+            }
+        </ol>
+    </div>
+
+</div>
+<section class="products">
+    @foreach (var item in Model)
+    {
+        <div class="product-card">
+            <fieldset>
+
+                <div class="product-image"> 
+                    <img src="@Url.Content(item.ImagePath)" width="200" height="200" multiple />
+                </div>
+
+
+
+                <div class="product-info">
+                    <p>
+                        <h2 id="prodName">
+                            @Html.ActionLink(@item.Name, "Details", new { id = item.Id })
+                        </h2> 
+                    <p>
+
+                    <p>
+                        <b> Цена: </b>  <em>@Html.DisplayFor(modelItem => item.Price) грн</em>
+                    </p>
+
+                    <p>
+                        <b>   Категория:</b>  <em>@Html.DisplayFor(modelItem => item.Category.CategoryName)</em>
+                    </p>
+                     
+
+                    <p class="button">
+                        <em>  @Html.ActionLink("Добавить в корзину", "AddToCart", "ShoppingCart", new { id = item.Id }, "")  </em>
+                    </p>
+                </div>
+            </fieldset>
+        </div>
+    }
+</section>
+

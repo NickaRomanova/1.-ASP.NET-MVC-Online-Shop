@@ -1,0 +1,26 @@
+﻿@model Shop_v2.Models.Producer
+
+@{
+    ViewBag.Title = "Подробнее о поставщике";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<fieldset>
+    <h1> Просмотр @Model.Name </h1>
+
+    @Html.HiddenFor(m => m.Id)
+    <p>
+        @Html.LabelFor(m => m.Name)
+        <br />
+        @Html.DisplayFor(m => m.Name)
+    </p>
+    <p>
+        @Html.LabelFor(m => m.Description)
+        <br />
+        @Html.DisplayFor(m => m.Description)
+    </p>
+
+    <p>
+        @Html.ActionLink("К списку производителей", "AllProducer", "Admin")
+    </p>
+</fieldset>

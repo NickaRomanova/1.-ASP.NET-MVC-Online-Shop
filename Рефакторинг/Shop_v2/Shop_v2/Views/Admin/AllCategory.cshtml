@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Shop_v2.Models.Category>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Категории";
+} 
+
+<fieldset>
+
+    <h1>Каталог категорий</h1>
+
+    <p>
+        @Html.ActionLink("Добавить категорию", "CreateCategory", "Admin")
+    </p>
+    <p>
+        @Html.ActionLink("Назад в настройки", "Index", "Admin")
+    </p>
+
+
+    <div>
+        <table cellspacing="0" border="1">
+            <tr>
+
+                <th>Наименование</th>
+
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryName)
+                    </td>
+
+                    <td> 
+                        @Html.ActionLink("Редактировать", "EditCategory", new { id = item.Id }) |
+                        @Html.ActionLink("Удалить", "DeleteCategory", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+
+    </fieldset>

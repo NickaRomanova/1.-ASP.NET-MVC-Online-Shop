@@ -1,0 +1,84 @@
+﻿@model Shop_v2.Models.Product
+
+@{
+    ViewBag.Title = "Подробнее о товаре";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="headListProd">
+
+    <h1> Просмотр: @Model.Name </h1>
+    <fieldset>
+
+        @Html.HiddenFor(m => m.Id)
+        <p>
+            <b>
+                @Html.LabelFor(m => m.Name)
+            </b>
+            <br />
+            @Html.DisplayFor(m => m.Name)
+        </p>
+        <p>
+            <b>
+                @Html.LabelFor(m => m.CategoryId)
+            </b>
+            <br />
+            @Html.DisplayFor(m => m.Category.CategoryName)
+
+        </p>
+        <p>
+            <b>
+                @Html.LabelFor(m => m.ImagePath)
+            </b>
+        </p>
+        <p>
+            <img src="@Url.Content(Model.ImagePath)" width="400" height="400" multiple />
+        </p>
+        <p>
+            <b>
+                @Html.LabelFor(m => m.Characteristic)
+            </b>
+            <br />
+            @Html.DisplayFor(m => m.Characteristic)
+        </p>
+        <p>
+            <b>
+                @Html.LabelFor(m => m.Description)
+            </b>
+            <br />
+            @Html.DisplayFor(m => m.Description)
+        </p>
+        <p>
+            <b>
+                @Html.LabelFor(m => m.ProducerId)
+            </b>
+            <br />
+            @Html.DisplayFor(m => m.Producer.Name)
+
+        </p>
+        <p>
+            <b>
+                @Html.LabelFor(m => m.Quantity)
+            </b>
+            <br />
+            @Html.DisplayFor(m => m.Quantity)
+        </p>
+        <p>
+            <b>
+                @Html.LabelFor(m => m.Price)
+
+            </b>
+            <br />
+            @Html.DisplayFor(m => m.Price) грн
+        </p>
+
+        <p class="button">
+            <em>  @Html.ActionLink("Добавить в корзину", "AddToCart", "ShoppingCart", new { id = Model.Id }, "")  </em>
+        </p>
+
+        <p>
+            @Html.ActionLink("Назад к новинкам", "Index", "Main")
+        </p>
+
+
+    </fieldset>
+</div>

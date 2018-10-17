@@ -1,0 +1,179 @@
+﻿@model Shop_v2.Models.User
+
+@{
+    ViewBag.Title = "Регистрация";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script type="text/javascript">
+    $(function () {
+        $("input[type='date']")
+            .datepicker({ dateFormat: 'dd/mm/yy' })
+            .get(0).setAttribute("type", "text");
+        $.datepicker.regional['ru'] = {
+            prevText: 'Пред',
+            nextText: 'След',
+            monthNames: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+                'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+            monthNamesShort: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн',
+                'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
+            dayNames: ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'],
+            dayNamesShort: ['вск', 'пнд', 'втр', 'срд', 'чтв', 'птн', 'сбт'],
+            dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+            weekHeader: 'Не',
+            dateFormat: 'dd/mm/yy',
+            firstDay: 1,
+            isRTL: false,
+            showMonthAfterYear: false,
+            yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['ru']);
+        $.validator.addMethod('date',
+            function (value, element) {
+                var ok = true;
+                try {
+                    $.datepicker.parseDate('dd/mm/yy', value);
+                }
+                catch (err) {
+                    ok = false;
+                }
+                return ok;
+            });
+    });
+</script> 
+
+
+<h2>Регитрация</h2>
+
+<h4>@ViewBag.Message</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div>
+
+    <hr />
+
+    @Html.ValidationSummary(true)
+
+    <div>
+        @Html.LabelFor(model => model.UserName)
+        <span id="requiredInfo">* </span>
+        <div id="myTextbox">
+            @Html.EditorFor(model => model.UserName)
+            @Html.ValidationMessageFor(model => model.UserName)
+        </div>
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.FirstName)
+        <span id="requiredInfo">* </span>
+        <div id="myTextbox">
+            @Html.EditorFor(model => model.FirstName)
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.LastName)
+        <span id="requiredInfo">* </span>
+        <div id="myTextbox">
+            @Html.EditorFor(model => model.LastName)
+            @Html.ValidationMessageFor(model => model.LastName)
+        </div>
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.City)
+        <span id="requiredInfo">* </span>
+        <div id="myTextbox">
+            @Html.EditorFor(model => model.City)
+            @Html.ValidationMessageFor(model => model.City)
+        </div>
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.Street)
+        <span id="requiredInfo">* </span>
+        <div id="myTextbox">
+            @Html.EditorFor(model => model.Street)
+            @Html.ValidationMessageFor(model => model.Street)
+        </div>
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.House)
+        <span id="requiredInfo">* </span>
+        <div id="myTextbox">
+            @Html.EditorFor(model => model.House)
+            @Html.ValidationMessageFor(model => model.House)
+        </div>
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.Housing)
+        <div id="myTextbox">
+            @Html.EditorFor(model => model.Housing)
+            @Html.ValidationMessageFor(model => model.Housing)
+        </div>
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.Flat)
+        <div id="myTextbox">
+            @Html.EditorFor(model => model.Flat)
+            @Html.ValidationMessageFor(model => model.Flat)
+        </div>
+    </div>
+
+
+    <div>
+        @Html.LabelFor(model => model.PhoneNumber)
+        <span id="requiredInfo">* </span>
+        <div id="myTextbox">
+            @Html.EditorFor(model => model.PhoneNumber)
+            @Html.ValidationMessageFor(model => model.PhoneNumber)
+        </div>
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.Email)
+        <div id="myTextbox">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.Password)
+        <span id="requiredInfo">* </span>
+        <div id="myTextbox">
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.RePassword)
+        <span id="requiredInfo">* </span>
+        <div id="myTextbox">
+            @Html.EditorFor(model => model.RePassword)
+            @Html.ValidationMessageFor(model => model.RePassword)
+        </div>
+    </div>
+
+    <br />
+
+    <div>
+        <input type="submit" value="Зарегистрироваться" class="btn btn-default" />
+
+    </div>
+</div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

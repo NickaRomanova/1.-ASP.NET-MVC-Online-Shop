@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Оформление заказа";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@model Shop_v2.Models.ShoppingCartModel 
+<h2>Оформление заказа</h2>
+<table border="1" style="min-width:800px">
+    <tr>
+        <th colspan="1" style="text-align:center;">
+            Товар
+        </th>
+        <th style="text-align:center">
+            Цена за шт
+        </th>
+        <th style="text-align:center" colspan="2">
+            Количество
+        </th>
+    </tr>
+    @foreach (var item in Model.CartItems)
+    {
+        <tr id="row-@item.RecordId">
+
+            <td>
+                <img src="@Url.Content(item.Product.ImagePath)" width="100" height="100" multiple />
+            </td>
+            <td>
+                @Html.ActionLink(item.Product.Name, "Details", "Home", new { id = item.ProductId }, null)
+            </td>
+            <td style="width: 100px; text-align:center;">
+                @item.Product.Price
+            </td>
+
+
+            <td id="item-count-@item.RecordId" style="width: 100px; text-align:center;">
+                @item.Count
+            </td>
+
+        </tr>
+    }
+</table>
+
+<hr />
+
+<div>
+    <h4>   Общая стоимость:  @Model.CartTotal</h4>
+</div>
+
+
+<button>
+    @Html.ActionLink("Далее", "OrderNextStep", "ShoppingCart", new { name = HttpContext.Current.User.Identity.Name.ToString() }, null)
+
+</button>

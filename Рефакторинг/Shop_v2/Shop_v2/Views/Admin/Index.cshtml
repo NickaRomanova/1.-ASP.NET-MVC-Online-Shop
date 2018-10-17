@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Shop_v2.Models.Product>
+
+@{
+    ViewBag.Title = "Администрирование";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Настройка сайта</h1>
+
+<p>
+    @Html.ActionLink("Товары", "Index", "Admin")
+</p>
+
+<p>
+    @Html.ActionLink("Производители", "AllProducer", "Admin")
+</p>
+
+<p>
+    @Html.ActionLink("Категории", "AllCategory", "Admin")
+</p>
+
+<p>
+    @Html.ActionLink("Пользователи", "AllUsers", "Admin")
+</p>
+
+<fieldset>
+    <div>
+        <p>
+            @Html.ActionLink("Добавить новый товар", "CreateProduct", "Admin")
+        </p>
+        <table cellspacing="0" border="1"  style="text-align:center;">
+            <tr >
+
+                <th  style="text-align:center;">Наименование</th>
+                <th  style="text-align:center;">Категория</th>
+                <th  style="text-align:center;">Фото</th>
+                <th  style="text-align:center;">Цена</th>
+                <th  style="text-align:center;">Производитель</th>
+                <th  style="text-align:center;">Кол-во</th>
+                <th  style="text-align:center;">Действия</th>
+
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td  style="text-align:left; padding-left:10px;">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                    </td>
+                    <td>
+                        <img src="@Url.Content(item.ImagePath)" width="120" height="120" multiple />
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Producer.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Детальнее", "DetailsProduct", new { id = item.Id })|
+                        @Html.ActionLink("Редактировать", "EditProduct", new { id = item.Id }) |
+                        @Html.ActionLink("Удалить", "DeleteProduct", new { id = item.Id })|
+
+                    </td>
+                </tr>
+            }
+        </table>
+
+    </div>
+
+</fieldset>

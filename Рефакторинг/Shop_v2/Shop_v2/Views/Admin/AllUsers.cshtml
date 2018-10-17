@@ -1,0 +1,54 @@
+﻿
+@Styles.Render("~/Content/css")
+@model IEnumerable<Shop_v2.Models.User>
+
+@{
+    ViewBag.Title = "Поставщики";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<fieldset>
+
+    <h1>Список зарегистрированных пользователей</h1>
+
+    @foreach (var item in Model)
+    {
+        <ol>
+            <li id="userList">
+                <b> @Html.DisplayFor(modelItem => item.UserName)</b>
+                <ul>
+
+                    <li>
+                        Имя:   @Html.DisplayFor(modelItem => item.FirstName)
+                    </li>
+                    <li>
+                        Фамилия:   @Html.DisplayFor(modelItem => item.LastName)
+                    </li>
+                    <li>
+                        Номер телефона:   @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </li>
+                    <li>
+                        Email:   @Html.DisplayFor(modelItem => item.Email)
+                    </li>
+                    <li>
+                        Адрес:
+                        г. @Html.DisplayFor(modelItem => item.City)
+                        ,
+                        ул. @Html.DisplayFor(modelItem => item.Street)
+                        ,
+                        д.  @Html.DisplayFor(modelItem => item.House)
+                        кор. @Html.DisplayFor(modelItem => item.Housing)
+                        ,
+                        кв. @Html.DisplayFor(modelItem => item.Flat)
+                    </li>
+
+                </ul>
+            </li>
+        </ol>
+    }
+
+</fieldset>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,62 @@
+﻿
+@model IEnumerable<Shop_v2.Models.Product>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="headListProd">
+    <h1>Каталог </h1>
+
+    @Html.Partial("SearchForm")
+
+
+    @Html.Partial("SelectCategory")
+
+    @*<form method="get">
+        <div class="form-inline">
+            <label class="control-label">Цена: </label>
+            @Html.DropDownList("price", new SelectList(new string[] { "По возрастанию", "По убыванию" }),
+                        htmlAttributes: new { @class = "form-control" })
+
+            <input type="submit" value="Фильтр" class="btn btn-default" />
+        </div> 
+    </form>*@
+</div>
+<section class="products">
+  
+    @foreach (var item in Model)
+    {
+        <div class="product-card">
+            <fieldset>
+
+                <div class="product-image">
+                    <img src="@Url.Content(item.ImagePath)" width="200" height="200" multiple />
+                </div>
+
+
+
+                <div class="product-info">
+                    <p>
+                        <h2 id="prodName">  @Html.DisplayFor(modelItem => item.Name)</h2>
+                    <p>
+
+                    <p>
+                        Цена: <em>@Html.DisplayFor(modelItem => item.Price)</em>
+                    </p>
+                    <p>
+                        Категория: <em>@Html.DisplayFor(modelItem => item.Category.CategoryName)</em>
+                    </p>
+
+                    <p>
+                        <em> @Html.ActionLink("Подробнее", "Details", new { id = item.Id })</em>
+                    </p>
+
+
+                    <p class="button">
+                        <em>  @Html.ActionLink("Добавить в корзину", "AddToCart", "ShoppingCart", new { id = item.Id }, "")  </em>
+                    </p>
+                </div>
+            </fieldset>
+        </div>
+    }
+</section>

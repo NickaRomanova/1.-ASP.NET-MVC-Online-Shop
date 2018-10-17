@@ -1,0 +1,9 @@
+﻿
+@{
+    ViewBag.Title = "Оформление заказа";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ 
+<h3 style="text-align:center;">
+    @(Request.IsAuthenticated ? HttpContext.Current.User.Identity.Name : "Guest"), спасибо за покупку на нашем сайте !!!
+</h3>

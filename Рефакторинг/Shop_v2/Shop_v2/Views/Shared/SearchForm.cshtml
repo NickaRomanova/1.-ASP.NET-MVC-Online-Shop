@@ -1,0 +1,11 @@
+﻿@using (Html.BeginForm("Search", "Home", FormMethod.Post))
+{
+    <div>
+        <span>Поиск по всем товарам:</span>
+        <input type="text" name="searchString" />
+        <input type="submit" />
+        <br />
+        @*<em>(по названию и категории)</em>*@
+    </div>
+}
+

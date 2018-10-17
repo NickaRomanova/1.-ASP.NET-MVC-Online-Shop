@@ -1,0 +1,46 @@
+﻿
+@model IEnumerable<Shop_v2.Models.Product>
+
+<section class="products">
+
+    @foreach (var item in Model.OrderByDescending(p => p.Id)
+                                .Take(8))
+    {
+        <div class="product-card">
+            <fieldset>
+
+                <div class="product-image">
+
+                    <img src="@Url.Content(item.ImagePath)" width="200" height="200" multiple />
+
+                </div>
+
+
+
+                <div class="product-info">
+                    <p>
+                        <h2 id="prodName">  @Html.DisplayFor(modelItem => item.Name)</h2>
+                    <p>
+
+                    <p>
+                        Цена: <em>@Html.DisplayFor(modelItem => item.Price) грн</em>
+                    </p>
+                    <p>
+                        Категория: <em>@Html.DisplayFor(modelItem => item.Category.CategoryName)</em>
+                    </p>
+
+                    <p>
+                       
+                        <em> @Html.ActionLink("Подробнее", "Details", new { id = item.Id })</em>
+                    </p>
+
+
+                    <p class="button">
+                        <em>  @Html.ActionLink("Добавить в корзину", "AddToCart", "ShoppingCart", new { id = item.Id }, "")  </em>
+                    </p>
+
+                </div>
+            </fieldset>
+        </div>
+    }
+</section>
